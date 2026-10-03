@@ -27,6 +27,12 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE occurredAt >= :startDate AND occurredAt <= :endDate ORDER BY occurredAt DESC")
     fun getTransactionsBetweenDates(startDate: Long, endDate: Long): Flow<List<TransactionEntity>>
 
+    @Query("SELECT * FROM transactions WHERE occurredAt >= :startDate AND occurredAt <= :endDate")
+    suspend fun getTransactionsInRange(startDate: Long, endDate: Long): List<TransactionEntity>
+
+    @Query("SELECT sourceHash FROM transactions WHERE occurredAt >= :startDate AND occurredAt <= :endDate AND sourceHash IS NOT NULL")
+    suspend fun getSourceHashesInRange(startDate: Long, endDate: Long): List<String>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertTransaction(transaction: TransactionEntity): Long
 

@@ -21,7 +21,7 @@ class BankParsersTest {
         assertEquals(Money.rupeesToPaise(500.0), result?.amountPaise)
         assertEquals(TransactionType.EXPENSE, result?.type)
         assertEquals("1234", result?.accountLast4)
-        assertEquals("naveen@okicici.", result?.merchantName) // Basic regex matches up to space, dot might be included
+        assertEquals("naveen@okicici", result?.merchantName)
         assertEquals("123456789", result?.upiReference)
     }
 
@@ -53,7 +53,7 @@ class BankParsersTest {
         assertEquals(Money.rupeesToPaise(1500.0), result?.amountPaise) // Should handle commas
         assertEquals(TransactionType.INCOME, result?.type)
         assertEquals("1234", result?.accountLast4)
-        assertEquals("NAVEEN.", result?.merchantName)
+        assertEquals("NAVEEN", result?.merchantName)
         assertEquals("123456789", result?.upiReference)
     }
 }

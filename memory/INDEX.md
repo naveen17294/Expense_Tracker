@@ -13,6 +13,7 @@
 | [SCHEMA.md](./SCHEMA.md) | Database Schema | Room entities, relationships, migrations log |
 | [PARSERS.md](./PARSERS.md) | SMS Parsers | Which banks/templates are supported, fixture status |
 | [UI_SCREENS.md](./UI_SCREENS.md) | Screens & Navigation | Screen inventory, navigation graph, UI state |
+| [IMPORT.md](./IMPORT.md) | Statement Import | CSV/bank-statement import design and heuristics |
 | [ISSUES.md](./ISSUES.md) | Bugs & Open Questions | Known issues, blockers, unresolved questions |
 | [GIT.md](./GIT.md) | Git & Release | Branch strategy, release history, repo info |
 

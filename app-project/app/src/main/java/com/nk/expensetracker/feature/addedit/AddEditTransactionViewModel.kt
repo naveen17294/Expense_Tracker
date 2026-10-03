@@ -59,8 +59,8 @@ class AddEditTransactionViewModel @Inject constructor(
         state.copy(
             accounts = accounts,
             categories = categories,
-            // Pre-select account if there's only one and none is selected
-            accountId = state.accountId ?: accounts.firstOrNull()?.id
+            // Pre-select GPay by default, fallback to first account if not found
+            accountId = state.accountId ?: accounts.find { it.name == "GPay" }?.id ?: accounts.firstOrNull()?.id
         )
     }.stateIn(
         scope = viewModelScope,

@@ -39,7 +39,7 @@ class PinViewModel @Inject constructor(
             _uiState.update { 
                 it.copy(
                     mode = if (isEnabled) PinMode.VERIFY else PinMode.SETUP,
-                    isAuthenticated = !isEnabled // If not enabled, user is authenticated by default
+                    isAuthenticated = false // If not enabled, user is authenticated by default
                 )
             }
         }
@@ -53,6 +53,10 @@ class PinViewModel @Inject constructor(
         if (pin.length == 4) {
             submitPin()
         }
+    }
+
+    fun skipSetup() {
+        _uiState.update { it.copy(isAuthenticated = true) }
     }
 
     private fun submitPin() {

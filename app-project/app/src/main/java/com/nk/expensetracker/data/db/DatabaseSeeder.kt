@@ -25,10 +25,35 @@ class DatabaseSeeder @Inject constructor(
             val existingCategories = categoryDao.getAllCategories().first()
             if (existingCategories.isEmpty()) {
                 seedCategories()
-                seedAccounts()
-                Log.d("DatabaseSeeder", "Database seeded with initial data.")
+                Log.d("DatabaseSeeder", "Database seeded with initial categories.")
             } else {
-                Log.d("DatabaseSeeder", "Database already seeded. Skipping.")
+                Log.d("DatabaseSeeder", "Categories already seeded. Skipping.")
+            }
+
+            val existingAccounts = accountDao.getAllAccounts().first()
+            val accountNames = existingAccounts.map { it.name }
+            val defaultAccountNames = listOf("GPay", "PhonePe", "CRED", "Cash", "Others")
+            
+            val missingAccounts = defaultAccountNames.filter { it !in accountNames }
+            if (missingAccounts.isNotEmpty()) {
+                val now = TimeUtils.nowMillis()
+                missingAccounts.forEach { name ->
+                    val account = AccountEntity(
+                        id = UUID.randomUUID().toString(),
+                        name = name,
+                        type = if (name == "Cash") "cash" else "wallet",
+                        institutionName = null,
+                        maskedIdentifier = null,
+                        openingBalancePaise = 0L,
+                        currencyCode = Constants.DEFAULT_CURRENCY,
+                        isOwned = true,
+                        isActive = true,
+                        createdAt = now,
+                        updatedAt = now
+                    )
+                    accountDao.insertAccount(account)
+                }
+                Log.d("DatabaseSeeder", "Seeded missing accounts: $missingAccounts")
             }
         } catch (e: Exception) {
             Log.e("DatabaseSeeder", "Error seeding database", e)
@@ -64,21 +89,4 @@ class DatabaseSeeder @Inject constructor(
         defaultRules.forEach { ruleDao.insertRule(it) }
     }
 
-    private suspend fun seedAccounts() {
-        val now = TimeUtils.nowMillis()
-        val cashAccount = AccountEntity(
-            id = UUID.randomUUID().toString(),
-            name = "Cash",
-            type = "cash",
-            institutionName = null,
-            maskedIdentifier = null,
-            openingBalancePaise = 0L,
-            currencyCode = Constants.DEFAULT_CURRENCY,
-            isOwned = true,
-            isActive = true,
-            createdAt = now,
-            updatedAt = now
-        )
-        accountDao.insertAccount(cashAccount)
-    }
 }

@@ -5,6 +5,12 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
+    <!-- SMS capture needs telephony, but the app must still install on
+         devices without it (tablets, ChromeOS) so manual and CSV import work. -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <application>
         <receiver
             android:name=".data.sms.SmsReceiver"

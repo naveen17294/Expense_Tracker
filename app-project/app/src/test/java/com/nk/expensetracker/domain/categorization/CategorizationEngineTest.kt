@@ -40,7 +40,7 @@ class CategorizationEngineTest {
         val result = engine.categorize(tx)
         
         assertEquals("food_cat", result.categoryId)
-        assertEquals(0.95, result.confidenceScore, 0.01)
+        assertEquals(0.95, result.confidenceScore ?: 0.0, 0.01)
     }
 
     @Test

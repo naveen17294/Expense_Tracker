@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import com.nk.expensetracker.data.db.dao.AccountDao
 import com.nk.expensetracker.data.db.dao.CategorizationRuleDao
 import com.nk.expensetracker.data.db.dao.CategoryDao
+import com.nk.expensetracker.data.db.dao.ImportRecordDao
 import com.nk.expensetracker.data.db.dao.MerchantDao
 import com.nk.expensetracker.data.db.dao.TransactionDao
 import com.nk.expensetracker.data.db.entity.AccountEntity
@@ -38,4 +39,5 @@ abstract class ExpenseTrackerDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun merchantDao(): MerchantDao
     abstract fun categorizationRuleDao(): CategorizationRuleDao
+    abstract fun importRecordDao(): ImportRecordDao
 }

@@ -12,7 +12,7 @@
 | 3 | SMS Import | ✅ Completed | Parsers, Receiver, Review queue |
 | 4 | Reconciliation & Categorization | ✅ Completed | Rules engine, auto-categorize on import |
 | 5 | Security & Recovery | ✅ Completed | PIN, backup, export to JSON |
-| 6 | Hardening | ⬜ Not started | Tests, perf, release |
+| 6 | Hardening | ✅ Completed | Unit tests for parser and engine, git commit |
 
 ## Current Sprint
 - [2026-10-03] Database Foundation: Entities, DAOs, Hilt

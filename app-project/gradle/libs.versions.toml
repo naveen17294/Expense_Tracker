@@ -10,15 +10,15 @@ androidxTestRunner = "1.7.0"
 androidxTestEspresso = "3.7.0"
 coroutines = "1.10.2"
 junit = "4.13.2"
-kotlin = "2.3.20"
+kotlin = "2.1.20"
 nav3Core = "1.0.1"
 lifecycleViewmodelNav3 = "2.10.0"
 
 # Hilt & KSP
-daggerHilt = "2.56.2"
+daggerHilt = "2.60.1"
 hiltNavigationCompose = "1.2.0"
 hiltWork = "1.2.0"
-ksp = "2.3.20-2.0.1"
+ksp = "2.3.12"
 
 # Architecture Components & Jetpack
 room = "2.7.1"
@@ -102,6 +102,7 @@ turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
 [plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

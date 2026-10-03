@@ -2,6 +2,7 @@ package com.nk.expensetracker.data.backup
 
 import android.content.Context
 import android.net.Uri
+import androidx.room.withTransaction
 import com.nk.expensetracker.data.db.ExpenseTrackerDatabase
 import com.nk.expensetracker.domain.model.BackupPayload
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -57,16 +58,7 @@ class BackupManager @Inject constructor(
 
             val payload = jsonFormat.decodeFromString<BackupPayload>(jsonString)
 
-            // Overwrite database
-            database.runInTransaction {
-                database.clearAllTables()
-                
-                // Needs to be synchronous inside transaction, but we are inside runInTransaction which is tricky with coroutines.
-                // It's safer to use DAOs directly. Wait, runInTransaction is blocking, DAOs are suspend.
-                // Actually, clearAllTables() works. We should use the suspend versions of inserts, or wrap it in a transaction scope.
-            }
-            // For now we do it sequentially without strict transaction block, or we use Room's withTransaction helper.
-            androidx.room.withTransaction(database) {
+            database.withTransaction {
                 database.clearAllTables()
                 payload.accounts.forEach { database.accountDao().insertAccount(it) }
                 payload.categories.forEach { database.categoryDao().insertCategory(it) }

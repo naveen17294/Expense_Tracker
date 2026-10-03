@@ -1,0 +1,36 @@
+# Expense Tracker - .gitignore
+
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# Android
+local.properties
+*.iml
+.idea/
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Kotlin
+*.class
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Signing
+*.jks
+*.keystore
+!debug.keystore
+
+# Backup test files
+*.petbackup
+
+# Memory files should be committed (they help maintain context)
